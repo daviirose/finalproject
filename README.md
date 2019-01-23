@@ -59,7 +59,7 @@ Inside your venv run this command: pip install autopep8
 
 ### Outputting Templates/Linking URLS
 
-First I have to tell Django where to look for the templates. In the root of the Django project which my BTRE folder go to settings.py, onto the templates list and give my directory a path. It would look something like this.
+First I have to tell Django where to look for the templates. In the root of the Django project which is my BTRE folder go to settings.py, onto the templates list and give the directory a path. It would look something like this:
 'DIRS': [os.path.join(BASE_DIR, 'templates')],
 
 • BASE_DIR just means the root directory
@@ -72,8 +72,32 @@ The proper way to link your URL files.
 
 The proper way to link your Views files.
 • def about(request):
+    
     return render(request, 'pages/about.html')
 
 /* This simply sends out a request to look inside the 'pages(folder)/about.html(Frontend)' */
 
 /* Note that since the BASE_DIR has a path towards the templates folder it will know to look inside the right pages folder */
+
+### Static Folder
+Create a Statics folder inside the generated BTRE folder. The BTRE folder was genertaed when we ran startproject.
+Inside the Static folder add:
+
+• img folder
+• js folder
+• css folder
+
+In settings.py of root project add:
+STATIC_ROOT= os.path.join(BASE_DIR, 'static')
+
+And 
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'btre/static')
+]
+
+When you deploy your app you run a command called 'collectstatic' and it goes into all your apps. If it has a static folder it takes everything out and puts it into a root static folder. Thats what im defining here.
+
+Run the command: 'python manage.py collectstatic'
+
+This will find any static folder I have, collect it, create one into as whatever I define the Static root name which is static. When I deploy this is the folder it will look for and not the root 'static' folder.
