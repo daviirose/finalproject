@@ -20,21 +20,21 @@ After creating a folder and a file for my new project I proceed to my next step 
 
 ### Creating a Virtual Environment
 		
-• python3 –m venv ./venv
+    python3 –m venv ./venv
 	
 ### Activate Environment 
 
-• source ./venv/bin/activate
+    source ./venv/bin/activate
 
 ### Leaving Environment
 	
-• Deactivate
+    Deactivate
 
 I just created my virtual environment, I made sure I was inside the virtual environment in order to install Django which is a python framework inside the environment and not globally.
 
 ### Installing Django
-
-• pip install Django
+    
+    pip install Django
 
 ### Gitignore
 
@@ -43,13 +43,14 @@ Visit gitignore.io for a default version of a gitignore within Django.
 
 ### Starting Project in Django
 
-• django-admin startproject  btre .
+    django-admin startproject  btre .
 
 • Btre: Project name
 
 ### Creating The Pages App
 
-• python manage.py startapp pages 
+    python manage.py startapp pages 
+
 /* Add your mini apps into your settings.py in the btre folder (Root of project) */
 
 ### Formatters
@@ -67,17 +68,18 @@ First I have to tell Django where to look for the templates. In the root of the 
 • Templates defines the folder name
 
 ### Linking URLS/VIEWS.py
-The proper way to link your URL files.
-• path('about', views.about, name='about') This is simply looking for the file 'About' inside your views.py
+The proper way to link your URL files:
 
-The proper way to link your Views files.
-• def about(request):
-    
-    return render(request, 'pages/about.html')
+    path('about', views.about, name='about') This is simply looking for the file 'About' inside your views.py
 
-/* This simply sends out a request to look inside the 'pages(folder)/about.html(Frontend)' */
+The proper way to link your Views files:
 
-/* Note that since the BASE_DIR has a path towards the templates folder it will know to look inside the right pages folder */
+    def about(request):
+        return render(request, 'pages/about.html')
+
+Note: This simply sends out a request to look inside the 'pages(folder)/about.html(Frontend)'
+
+Note: since the BASE_DIR has a path towards the templates folder it will know to look inside the right pages folder.
 
 ### Static Folder
 Create a Statics folder inside the generated BTRE folder. The BTRE folder was genertaed when we ran startproject.
@@ -88,16 +90,20 @@ Inside the Static folder add:
 • css folder
 
 In settings.py of root project add:
-STATIC_ROOT= os.path.join(BASE_DIR, 'static')
+
+
+    STATIC_ROOT= os.path.join(BASE_DIR, 'static')
 
 And 
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'btre/static')
-]
+    STATICFILES_DIRS = [
+        os.path.join(BASE_DIR, 'btre/static')
+    ]
 
 When you deploy your app you run a command called 'collectstatic' and it goes into all your apps. If it has a static folder it takes everything out and puts it into a root static folder. Thats what im defining here.
 
-Run the command: 'python manage.py collectstatic'
+Run the command: 
+    
+    python manage.py collectstatic
 
 This will find any static folder I have, collect it, create one into as whatever I define the Static root name which is static. When I deploy this is the folder it will look for and not the root 'static' folder.
