@@ -51,17 +51,24 @@ Visit gitignore.io for a default version of a gitignore within Django.
 
     python manage.py startapp pages 
 
-/* Add your mini apps into your settings.py in the btre folder (Root of project) */
+Add your mini apps in btre/settings.py/INSTALLED_APPS:
+    
+    'pages.apps.PagesConfig',
+
+PagesConfig comes from pages/apps.py
 
 ### Formatters
 You might get an error involving formatters espcially if you are using VSCode. It might ask you to install it through VSCode but this will only do it globally, you want it inside your virtual environment instead.
 
-Inside your venv run this command: pip install autopep8
+Inside your venv run this command: 
+    
+    pip install autopep8
 
 ### Outputting Templates/Linking URLS
 
 First I have to tell Django where to look for the templates. In the root of the Django project which is my BTRE folder go to settings.py, onto the templates list and give the directory a path. It would look something like this:
-'DIRS': [os.path.join(BASE_DIR, 'templates')],
+
+    'DIRS': [os.path.join(BASE_DIR, 'templates')],
 
 • BASE_DIR just means the root directory
 
